@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:units="clr-namespace:WindowDock.UI.Units">
+    <Style TargetType="{x:Type units:QuickListItem}">
+        <Setter Property="SelectCommand" Value="{Binding Path=DataContext.RunProcCommand, RelativeSource={RelativeSource AncestorType={x:Type units:QuickList}}}" />
+        <Setter Property="ToolTip" Value="{Binding FileName}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type units:QuickListItem}">
+                    <Border
+                        Margin="10,0"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Image
+                            Width="72"
+                            Height="72"
+                            RenderOptions.BitmapScalingMode="HighQuality"
+                            SnapsToDevicePixels="True"
+                            Source="{Binding FileImage}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
