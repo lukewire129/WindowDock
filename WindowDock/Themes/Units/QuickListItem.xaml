@@ -13,12 +13,14 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                        <Image
-                            Width="72"
-                            Height="72"
-                            RenderOptions.BitmapScalingMode="HighQuality"
-                            SnapsToDevicePixels="True"
-                            Source="{Binding FileImage}" />
+                        <Viewbox Width="45">
+                            <Image
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                RenderOptions.EdgeMode="Aliased"
+                                SnapsToDevicePixels="True"
+                                Source="{Binding FileImage}"
+                                UseLayoutRounding="True" />
+                        </Viewbox>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
