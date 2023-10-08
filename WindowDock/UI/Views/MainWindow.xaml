@@ -27,11 +27,17 @@
             Background="Black"
             Opacity="0.6"
             Style="{StaticResource BackBorder}" />
-        <Border
-            Padding="20,0"
-            Background="Transparent"
-            Style="{StaticResource BackBorder}">
-            <units:QuickList ItemsSource="{Binding QuickFiles}" />
+        <Border x:Name="bdr">
+            <Border.Style>
+                <Style BasedOn="{StaticResource BackBorder}" TargetType="{x:Type Border}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LawnGreen" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
         </Border>
+        <units:QuickList Margin="20,10" ItemsSource="{Binding QuickFiles}" />
     </Grid>
 </Window>

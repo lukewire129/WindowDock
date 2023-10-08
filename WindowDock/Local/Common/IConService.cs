@@ -26,11 +26,18 @@ namespace WindowDock.Local.Common
             {
                 quickFiles.Add (new QuickFile ()
                 {
+                    Type = LinkType.Program,
                     FileImage = Convert ((Bitmap)Icon.ExtractAssociatedIcon (file).ToBitmap ()),
                     FullPath = file,
-                    FileName = Path.GetFileNameWithoutExtension (file)
+                    ToolTipName = Path.GetFileNameWithoutExtension (file)
                 });
             }
+
+            quickFiles.Add (new ()
+            {
+                Type = LinkType.None,
+                ToolTipName = "추가하기"
+            });
 
             return quickFiles;
         }
@@ -44,6 +51,10 @@ namespace WindowDock.Local.Common
                 WshShell shell = new WshShell ();
                 IWshShortcut link = (IWshShortcut)shell.CreateShortcut (file);
                 if (string.IsNullOrEmpty (link.TargetPath))
+                    continue;
+                if (link.TargetPath.ToLower ().Contains ("update"))     // update 시작하는 바로가기는 제외
+                    continue;
+                if (link.TargetPath.ToLower ().Contains ("proxy"))     // proxy 시작하는 바로가기는 제외
                     continue;
                 tempFullPath.Add (link.TargetPath);
             }
