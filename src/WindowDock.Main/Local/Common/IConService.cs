@@ -35,8 +35,8 @@ namespace WindowDock.Main.Local.Common
 
             quickFiles.Add (new ()
             {
-                Type = LinkType.Add,
-                ToolTipName = "추가하기"
+                Type = LinkType.Option,
+                ToolTipName = "옵션"
             });
 
             return quickFiles;
