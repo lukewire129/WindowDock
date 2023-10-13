@@ -39,7 +39,7 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="Hand" />
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Type}" Value="None">
+            <DataTrigger Binding="{Binding Type}" Value="Add">
                 <Setter Property="Template" Value="{StaticResource DotsTemplate}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Type}" Value="Program">
