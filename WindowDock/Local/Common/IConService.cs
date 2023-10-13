@@ -17,14 +17,14 @@ namespace WindowDock.Local.Common
             this._directory = directory;
         }
 
-        public List<QuickFile> GetFiles()
+        public List<QuickIcon> GetFiles()
         {
             List<string> files = GetRootPath ();
-            List<QuickFile> quickFiles = new List<QuickFile> ();
+            List<QuickIcon> quickFiles = new List<QuickIcon> ();
 
             foreach (var file in files)
             {
-                quickFiles.Add (new QuickFile ()
+                quickFiles.Add (new QuickIcon ()
                 {
                     Type = LinkType.Program,
                     FileImage = Convert ((Bitmap)Icon.ExtractAssociatedIcon (file).ToBitmap ()),
@@ -35,7 +35,7 @@ namespace WindowDock.Local.Common
 
             quickFiles.Add (new ()
             {
-                Type = LinkType.None,
+                Type = LinkType.Add,
                 ToolTipName = "추가하기"
             });
 

@@ -11,17 +11,20 @@ namespace WindowDock.Local.ViewModels
 {
     public partial class MainWindowViewModel : ObservableBase
     {
-        [ObservableProperty]
-        private ObservableCollection<QuickFile> _quickFiles;
+        [ObservableProperty] ObservableCollection<QuickIcon> _quickFiles;
         public MainWindowViewModel()
         {
             IConService conService = new IConService ($"{Environment.GetFolderPath (System.Environment.SpecialFolder.ApplicationData)}\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\");
-            this.QuickFiles = new ObservableCollection<QuickFile>(conService.GetFiles ());
+            this.QuickFiles = new ObservableCollection<QuickIcon>(conService.GetFiles ());
         }
 
         [RelayCommand]
-        private void RunProc(QuickFile quickFile)
+        private void RunProc(QuickIcon quickFile)
         {
+            if(quickFile.Type == LinkType.Add)
+            {
+                return;
+            }
             Process.Start (quickFile.FullPath);
         }
     }

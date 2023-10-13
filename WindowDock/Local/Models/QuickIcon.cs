@@ -5,11 +5,11 @@ namespace WindowDock.Local.Models
     public enum LinkType
     {
         Program,
-        None,
+        Add,
     }
-    public class QuickFile
+    public class QuickIcon
     {
-        public LinkType Type { get; set; } = LinkType.None;
+        public LinkType Type { get; set; } = LinkType.Add;
         public ImageSource FileImage { get; set; }
         public string FullPath { get; set; }
         public string ToolTipName { get; set; }
