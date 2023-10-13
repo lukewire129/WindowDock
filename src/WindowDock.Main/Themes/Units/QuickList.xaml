@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:units="clr-namespace:WindowDock.UI.Units">
+    xmlns:units="clr-namespace:WindowDock.Main.UI.Units">
     <Style TargetType="{x:Type units:QuickList}">
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="UseLayoutRounding" Value="True" />

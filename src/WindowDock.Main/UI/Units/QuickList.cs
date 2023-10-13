@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace WindowDock.UI.Units
+namespace WindowDock.Main.UI.Units
 {
     public class QuickList : ListBox
     {

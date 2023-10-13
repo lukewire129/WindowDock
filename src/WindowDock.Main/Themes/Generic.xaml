@@ -1,0 +1,7 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/WindowDock.Main;Component\Themes\Units\QuickListItem.xaml" />
+        <ResourceDictionary Source="/WindowDock.Main;Component\Themes\Units\QuickList.xaml" />
+        <ResourceDictionary Source="/WindowDock.Main;component/Themes/Views/MainContent.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

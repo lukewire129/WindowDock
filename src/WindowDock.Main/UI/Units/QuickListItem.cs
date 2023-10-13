@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace WindowDock.UI.Units
+namespace WindowDock.Main.UI.Units
 {
     public class QuickListItem : Button
     {

@@ -8,27 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Themes\Views\**" />
-    <EmbeddedResource Remove="Themes\Views\**" />
-    <None Remove="Themes\Views\**" />
-    <Page Remove="Themes\Views\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <COMReference Include="IWshRuntimeLibrary">
-      <WrapperTool>tlbimp</WrapperTool>
-      <VersionMinor>0</VersionMinor>
-      <VersionMajor>1</VersionMajor>
-      <Guid>f935dc20-1cf0-11d0-adb9-00c04fd58a0b</Guid>
-      <Lcid>0</Lcid>
-      <Isolated>false</Isolated>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Jamesnet.Wpf" Version="1.0.0.68" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WindowDock.Main\WindowDock.Main.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace WindowDock.Local.Models
+namespace WindowDock.Main.Local.Models
 {
     public enum LinkType
     {

@@ -4,9 +4,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
-using WindowDock.Local.Models;
+using WindowDock.Main.Local.Models;
 
-namespace WindowDock.Local.Common
+namespace WindowDock.Main.Local.Common
 {
     public class IConService
     {
