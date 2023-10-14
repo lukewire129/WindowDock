@@ -1,7 +1,6 @@
 ﻿using Jamesnet.Wpf.Controls;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Services.Dialogs;
 using WindowDock.Forms;
 using WindowDock.Main.UI.Views;
 using WindowDock.Option.Local.ViewModels;
@@ -19,5 +18,8 @@ public class ViewModules : IModule
         containerRegistry.RegisterSingleton<IViewable, MainContent> ("MainContent");
         containerRegistry.RegisterDialogWindow<CustomDialogWindow> ();
         containerRegistry.RegisterDialog<OptionContent, OptionContentViewModel> ();
+
+        //containerRegistry.RegisterSingleton<IViewable, OptionContent> ("OptionContent");
+
     }
 }

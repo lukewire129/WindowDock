@@ -9,6 +9,7 @@ public partial class MainWindow : JamesWindow
     {
         InitializeComponent ();
         regionManager.RegisterViewWithRegion ("MainRegion", "MainContent");
+        //regionManager.RegisterViewWithRegion ("MainRegion", "OptionContent");
         this.MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
     }
 

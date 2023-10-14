@@ -6,8 +6,6 @@
     xmlns:james="https://jamesnet.dev/xaml/presentation"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="800"
-    Height="100"
     AllowsTransparency="True"
     Background="Transparent"
     ResizeMode="NoResize"

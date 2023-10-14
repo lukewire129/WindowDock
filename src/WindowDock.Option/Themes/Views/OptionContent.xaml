@@ -1,20 +1,55 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:james="https://jamesnet.dev/xaml/presentation"
     xmlns:views="clr-namespace:WindowDock.Option.UI.Views">
     <Style TargetType="{x:Type views:OptionContent}">
-        <Setter Property="Background" Value="Black" />
+        <Setter Property="Background" Value="#232323" />
         <Setter Property="Width" Value="500" />
-        <Setter Property="Height" Value="300" />
+        <Setter Property="Height" Value="800" />
+        <Setter Property="Padding" Value="10,20,10,20" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type views:OptionContent}">
                     <Border
+                        Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="6">
-                        <TextBlock Foreground="White" Text="whihi" />
+                        CornerRadius="5">
+                        <james:JamesStack VerticalAlignment="Top" ChildSpacing="20">
+                            <TextBlock
+                                FontFamily="나눔고딕"
+                                FontSize="24"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Text="환경설정" />
+                            <james:JamesGrid Columns="*" Rows="auto,*">
+                                <james:JamesStack ChildSpacing="20">
+                                    <TextBlock
+                                        FontFamily="나눔고딕"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="Style" />
+                                    <james:JamesGrid ColumnCount="5" RowCount="5">
+                                        <james:JamesGrid.Resources>
+                                            <Style TargetType="{x:Type RadioButton}">
+                                                <Setter Property="FontFamily" Value="나눔고딕" />
+                                                <Setter Property="FontSize" Value="15" />
+                                                <Setter Property="Foreground" Value="White" />
+                                                <Setter Property="GroupName" Value="Style" />
+                                            </Style>
+                                        </james:JamesGrid.Resources>
+                                        <RadioButton Content="Style1" />
+                                        <RadioButton Content="Style2" />
+                                        <RadioButton Content="Style3" />
+                                        <RadioButton Content="Style4" />
+                                        <RadioButton Content="Style5" />
+                                    </james:JamesGrid>
+                                </james:JamesStack>
+                            </james:JamesGrid>
+                        </james:JamesStack>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
