@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowDock.Main", "WindowDo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowDock.Option", "WindowDock.Option\WindowDock.Option.csproj", "{85A856C9-D118-4247-AD2F-C563C96E6679}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowDock.Forms", "WindowDock.Forms\WindowDock.Forms.csproj", "{C0424E95-10AB-4DC0-AE67-C6730E1161CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowDock.Forms", "WindowDock.Forms\WindowDock.Forms.csproj", "{C0424E95-10AB-4DC0-AE67-C6730E1161CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Partial", "Partial", "{8EC46955-9787-4E42-AF89-65D5B798E224}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{3BB06146-8181-4FEA-8DE5-E48378F58DB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowDock.Core", "WindowDock.Core\WindowDock.Core.csproj", "{9BA39D7E-7E39-415E-91A4-8AD1C3323B7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +39,20 @@ Global
 		{C0424E95-10AB-4DC0-AE67-C6730E1161CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0424E95-10AB-4DC0-AE67-C6730E1161CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0424E95-10AB-4DC0-AE67-C6730E1161CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BA39D7E-7E39-415E-91A4-8AD1C3323B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BA39D7E-7E39-415E-91A4-8AD1C3323B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BA39D7E-7E39-415E-91A4-8AD1C3323B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BA39D7E-7E39-415E-91A4-8AD1C3323B7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A95351F-176A-4416-B91F-1690C1763989} = {8EC46955-9787-4E42-AF89-65D5B798E224}
+		{58B86B46-517D-4605-B734-8A824F356E01} = {3BB06146-8181-4FEA-8DE5-E48378F58DB1}
+		{85A856C9-D118-4247-AD2F-C563C96E6679} = {3BB06146-8181-4FEA-8DE5-E48378F58DB1}
+		{C0424E95-10AB-4DC0-AE67-C6730E1161CF} = {8EC46955-9787-4E42-AF89-65D5B798E224}
+		{9BA39D7E-7E39-415E-91A4-8AD1C3323B7E} = {8EC46955-9787-4E42-AF89-65D5B798E224}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF4CA968-C1AB-47BC-BB9A-0B5B811F1552}

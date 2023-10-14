@@ -14,10 +14,11 @@ namespace WindowDock.Main.Local.ViewModels
     [AllArgsConstructor]
     public partial class MainContentViewModel : ObservableBase, IViewLoadable
     {
+        [ObservableProperty] 
+        ObservableCollection<QuickIcon> _quickFiles;
+
         private readonly IDialogService _dialogService;
         private readonly IConService _conService;
-
-        [ObservableProperty] ObservableCollection<QuickIcon> _quickFiles;
 
         public void OnLoaded(IViewable view)
         {

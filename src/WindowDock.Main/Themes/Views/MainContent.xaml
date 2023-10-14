@@ -18,21 +18,36 @@
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
                             <Border
+                                x:Name="PART_BDR"
                                 Background="Black"
                                 Opacity="0.6"
                                 Style="{StaticResource BackBorder}" />
-                            <Border x:Name="bdr">
-                                <Border.Style>
-                                    <Style BasedOn="{StaticResource BackBorder}" TargetType="{x:Type Border}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="LawnGreen" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                            </Border>
-                            <units:QuickList Margin="20,10" ItemsSource="{Binding QuickFiles}" />
+                            <Grid>
+                                <Border x:Name="bdr">
+                                    <Border.Style>
+                                        <Style BasedOn="{StaticResource BackBorder}" TargetType="{x:Type Border}">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="LawnGreen" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                                <units:QuickList Margin="20,10" ItemsSource="{Binding QuickFiles}">
+                                    <units:QuickList.Style>
+                                        <Style TargetType="{x:Type units:QuickList}">
+                                            <Setter Property="ItemsPanel">
+                                                <Setter.Value>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="{Binding Orientation, RelativeSource={RelativeSource AncestorType={x:Type views:MainContent}}}" />
+                                                    </ItemsPanelTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </units:QuickList.Style>
+                                </units:QuickList>
+                            </Grid>
                         </Grid>
                     </Border>
                 </ControlTemplate>
