@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Jamesnet.Wpf.Controls;
 using Jamesnet.Wpf.Mvvm;
+using Lombok.NET;
 using Prism.Services.Dialogs;
-using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using WindowDock.Main.Local.Common;
@@ -10,21 +11,17 @@ using WindowDock.Main.Local.Models;
 
 namespace WindowDock.Main.Local.ViewModels
 {
-    public partial class MainContentViewModel : ObservableBase
+    [AllArgsConstructor]
+    public partial class MainContentViewModel : ObservableBase, IViewLoadable
     {
         private readonly IDialogService _dialogService;
+        private readonly IConService _conService;
+
         [ObservableProperty] ObservableCollection<QuickIcon> _quickFiles;
-        private string _title = "Prism Application";
-        public string Title
+
+        public void OnLoaded(IViewable view)
         {
-            get { return _title; }
-            set { SetProperty (ref _title, value); }
-        }
-        public MainContentViewModel(IDialogService dialogService)
-        {
-            IConService conService = new IConService ($"{Environment.GetFolderPath (System.Environment.SpecialFolder.ApplicationData)}\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\");
-            this.QuickFiles = new ObservableCollection<QuickIcon>(conService.GetFiles ());
-            this._dialogService = dialogService;
+            this.QuickFiles = new ObservableCollection<QuickIcon> (_conService.GetFiles ());
         }
 
         [RelayCommand]
@@ -32,6 +29,7 @@ namespace WindowDock.Main.Local.ViewModels
         {
             if(quickFile.Type == LinkType.Option)
             {
+                string Title;
                 var message = "This is a message that should be shown in the dialog.";
                 //using the dialog service as-is
                 _dialogService.Show ("OptionContent", new DialogParameters ($"message={message}"), r =>

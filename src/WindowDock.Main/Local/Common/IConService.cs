@@ -1,4 +1,5 @@
 ﻿using IWshRuntimeLibrary;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -8,13 +9,13 @@ using WindowDock.Main.Local.Models;
 
 namespace WindowDock.Main.Local.Common
 {
-    public class IConService
+    public partial class IConService
     {
         private readonly string _directory;
 
-        public IConService(string directory)
+        public IConService()
         {
-            this._directory = directory;
+            _directory = $"{Environment.GetFolderPath (System.Environment.SpecialFolder.ApplicationData)}\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\";
         }
 
         public List<QuickIcon> GetFiles()

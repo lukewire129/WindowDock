@@ -1,24 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Jamesnet.Wpf.Global.Event;
 using Jamesnet.Wpf.Mvvm;
-using Prism.Commands;
+using Lombok.NET;
 using Prism.Services.Dialogs;
 using System;
 
 namespace WindowDock.Option.Local.ViewModels
 {
+    [AllArgsConstructor]
     public partial class OptionContentViewModel : ObservableBase, IDialogAware
     {
-        private DelegateCommand<string> _closeDialogCommand;
-        public DelegateCommand<string> CloseDialogCommand =>
-            _closeDialogCommand ?? (_closeDialogCommand = new DelegateCommand<string> (CloseDialog));
-
-        [ObservableProperty]
-        private string _message;
-
-        [ObservableProperty]
-        private string _title = "Notification";
+        [ObservableProperty] string _title = "Notification";
 
         public event Action<IDialogResult> RequestClose;
+        private readonly IEventHub _eventHub;
 
         protected virtual void CloseDialog(string parameter)
         {
@@ -49,7 +44,6 @@ namespace WindowDock.Option.Local.ViewModels
 
         public virtual void OnDialogOpened(IDialogParameters parameters)
         {
-            Message = parameters.GetValue<string> ("message");
         }
     }
 }
