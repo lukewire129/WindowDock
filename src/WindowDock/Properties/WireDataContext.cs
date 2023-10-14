@@ -1,7 +1,8 @@
 ﻿using Jamesnet.Wpf.Global.Location;
-using WindowDock.Local.ViewModels;
 using WindowDock.Main.Local.ViewModels;
 using WindowDock.Main.UI.Views;
+using WindowDock.Option.Local.ViewModels;
+using WindowDock.Option.UI.Views;
 
 namespace WindowDock.Properties
 {
@@ -9,8 +10,8 @@ namespace WindowDock.Properties
     {
         protected override void Match(ViewModelLocatorCollection items)
         {
-            items.Register<MainWindow, MainWindowViewMoel> ();
             items.Register<MainContent, MainContentViewModel> ();
+            items.Register<OptionContent, OptionContentViewModel> ();
         }
     }
 }

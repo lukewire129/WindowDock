@@ -1,22 +1,17 @@
 ﻿using Jamesnet.Wpf.Controls;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using Prism.Ioc;
 using System.Windows;
+using WindowDock.Forms;
 
-namespace WindowDock
+namespace WindowDock;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : JamesApplication
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : JamesApplication
+    protected override Window CreateShell()
     {
-        protected override Window CreateShell()
-        {
-            return new MainWindow ();
-        }
+        return Container.Resolve<MainWindow> ();
     }
 }

@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WindowDock.Forms\WindowDock.Forms.csproj" />
     <ProjectReference Include="..\WindowDock.Main\WindowDock.Main.csproj" />
+    <ProjectReference Include="..\WindowDock.Option\WindowDock.Option.csproj" />
   </ItemGroup>
 
 </Project>
