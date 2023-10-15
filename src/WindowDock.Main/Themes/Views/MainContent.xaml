@@ -34,7 +34,10 @@
                                         </Style>
                                     </Border.Style>
                                 </Border>
-                                <units:QuickList Margin="20,10" ItemsSource="{Binding QuickFiles}">
+                                <units:QuickList
+                                    x:Name="PART_QuickItem"
+                                    Margin="20,10"
+                                    ItemsSource="{Binding QuickFiles}">
                                     <units:QuickList.Style>
                                         <Style TargetType="{x:Type units:QuickList}">
                                             <Setter Property="ItemsPanel">

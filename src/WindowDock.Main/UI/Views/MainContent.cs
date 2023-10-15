@@ -2,13 +2,15 @@
 using Jamesnet.Wpf.Global.Event;
 using Lombok.NET;
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Animation;
 using WindowDock.Core.Enums;
 using WindowDock.Core.Event;
+using WindowDock.Main.UI.Units;
 
 namespace WindowDock.Main.UI.Views;
 
@@ -43,7 +45,7 @@ public partial class MainContent : JamesContent
             if (e == StyleEnum.Style1)
             {
                 Orientation = Orientation.Horizontal;
-                bdr.Height = double.NaN;
+                bdr.Width = double.NaN;
                 bdr.Margin = new Thickness (0, 0, 0, 0);
                 bdr.CornerRadius = new CornerRadius (7);
             }
@@ -69,6 +71,20 @@ public partial class MainContent : JamesContent
 
             }
         });
+    }
+
+    protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+    {
+        base.OnPropertyChanged (e);
+        Debug.WriteLine (e.Property.Name);
+        if(e.Property.Name == nameof(ActualWidth))
+        {
+            // this.Width = ActualWidth;
+        }
+        else if (e.Property.Name == nameof (ActualHeight))
+        {
+            // this.Height = ActualWidth;
+        }
     }
     private void Style1Change()
     {
