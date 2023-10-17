@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 using WindowDock.Main.Local.Models;
 
-namespace WindowDock.Main.Local.Common
+namespace WindowDock.Main.Local.Services
 {
     public partial class IConService
     {

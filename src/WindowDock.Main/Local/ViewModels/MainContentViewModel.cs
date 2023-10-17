@@ -6,7 +6,7 @@ using Lombok.NET;
 using Prism.Services.Dialogs;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using WindowDock.Main.Local.Common;
+using WindowDock.Main.Local.Services;
 using WindowDock.Main.Local.Models;
 
 namespace WindowDock.Main.Local.ViewModels
@@ -14,8 +14,7 @@ namespace WindowDock.Main.Local.ViewModels
     [AllArgsConstructor]
     public partial class MainContentViewModel : ObservableBase, IViewLoadable
     {
-        [ObservableProperty] 
-        ObservableCollection<QuickIcon> _quickFiles;
+        [ObservableProperty] ObservableCollection<QuickIcon> _quickFiles;
 
         private readonly IDialogService _dialogService;
         private readonly IConService _conService;

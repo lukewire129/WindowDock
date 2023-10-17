@@ -3,7 +3,7 @@ using Jamesnet.Wpf.Global.Location;
 using Prism.Ioc;
 using System.Windows;
 using WindowDock.Forms;
-using WindowDock.Main.Local.Common;
+using WindowDock.Main.Local.Services;
 using WindowDock.Main.Local.ViewModels;
 using WindowDock.Main.UI.Views;
 using WindowDock.Option.Local.ViewModels;

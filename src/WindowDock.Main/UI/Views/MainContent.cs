@@ -2,25 +2,23 @@
 using Jamesnet.Wpf.Global.Event;
 using Lombok.NET;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Media3D;
 using WindowDock.Core.Enums;
 using WindowDock.Core.Event;
-using WindowDock.Main.UI.Units;
+using WindowDock.Main.Local.ViewModels;
 
 namespace WindowDock.Main.UI.Views;
 
 [AllArgsConstructor]
 public partial class MainContent : JamesContent
 {
-
-    // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
     public static readonly DependencyProperty OrientationProperty;
-
 
     public Orientation Orientation
     {
@@ -44,26 +42,18 @@ public partial class MainContent : JamesContent
         {
             if (e == StyleEnum.Style1)
             {
-                Orientation = Orientation.Horizontal;
-                bdr.Width = double.NaN;
-                bdr.Margin = new Thickness (0, 0, 0, 0);
-                bdr.CornerRadius = new CornerRadius (7);
+                Style1Change ();
             }
             else if (e == StyleEnum.Style2)
             {
-                Orientation = Orientation.Vertical;
-                bdr.Height = double.NaN;
-                bdr.Margin = new Thickness (0, 0, 0, 0);
-                bdr.CornerRadius = new CornerRadius (7);
+                Style2Change ();
             }
             else if (e == StyleEnum.Style3)
             {
-                Orientation = Orientation.Horizontal;
                 Style3Change ();
             }
             else if (e == StyleEnum.Style4)
             {
-                Orientation = Orientation.Horizontal;
                 Style4Change ();
             }
             else if (e == StyleEnum.Style5)
@@ -72,102 +62,85 @@ public partial class MainContent : JamesContent
             }
         });
     }
-
-    protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+    
+    private (double width, double height) GetDockSize()
     {
-        base.OnPropertyChanged (e);
-        Debug.WriteLine (e.Property.Name);
-        if(e.Property.Name == nameof(ActualWidth))
+        var itemsCount = ((MainContentViewModel)this.DataContext).QuickFiles.Count;
+        double iconSize = 65.0;
+
+        if(Orientation == Orientation.Vertical)
         {
-            // this.Width = ActualWidth;
+            Height = (iconSize * itemsCount) + (10.0 * 2);
+            Width = iconSize + (20.0 * 2);
         }
-        else if (e.Property.Name == nameof (ActualHeight))
+        else
         {
-            // this.Height = ActualWidth;
+            Width = (iconSize * itemsCount) + (20.0 * 2);
+            Height = iconSize + (10.0 * 2);
         }
+
+        return (Width, Height);
     }
+    Storyboard sb;
     private void Style1Change()
     {
-        var a = this.Width;
+        sb?.Remove ();
         Orientation = Orientation.Horizontal;
-
-        var tempwidth = this.ActualWidth;
-        Style1WidthInit (tempwidth);
+        var size = GetDockSize ();
+        bdr.Width = size.width;
+        bdr.Height = Double.NaN;
+        bdr.Margin = new Thickness (0, 0, 0, 0);
+        bdr.CornerRadius = new CornerRadius (7);
     }
 
-    private Task Style1WidthInit(double width) 
+    private void Style2Change()
     {
-        Task.Delay (100);
-        Dispatcher.BeginInvoke (() =>
-        {
-            var _da = Style1 (width, 0);
-            _da.Completed += (s, e) =>
-            {
-                bdr.Margin = new Thickness (0, 0, 0, 0);
-                bdr.CornerRadius = new CornerRadius (7);
+        sb?.Remove ();
+        Orientation = Orientation.Vertical;
+        var size = GetDockSize ();
 
-                StyleWidthComplte (width);
-            };
-            WidthSizeChange (_da);
-        });
-        return Task.CompletedTask;
+        bdr.Width = size.width;
+        bdr.Height = size.height;
+        bdr.Margin = new Thickness (0, 0, 0, 0);
+        bdr.CornerRadius = new CornerRadius (7);
     }
 
-    private Task StyleWidthComplte(double width)
-    {
-        Dispatcher.BeginInvoke (() =>
-        {
-            bdr.Margin = new Thickness (0, 0, 0, 0);
-            bdr.CornerRadius = new CornerRadius (7);
-
-            var _da2 = Style1 (0, width);
-            WidthSizeChange (_da2);
-            _da2.Completed += (s, e) =>
-            {
-                StyleWidth ();
-            };
-        });
-        return Task.CompletedTask;
-    }
-
-    private Task StyleWidth()
-    {
-        this.Width = double.NaN;
-        return Task.CompletedTask;
-    }
 
     private void Style3Change()
     {
-        var _da = Style3 (30);
-        HeightSizeChange (_da);
+        sb?.Remove ();
+        Orientation = Orientation.Horizontal;
+        var size = GetDockSize ();
+        bdr.Width = size.width;
+        bdr.Height = size.height;
+        HeightSizeChange (Style3 (30));
         bdr.Margin = new Thickness (0, 30, 0, 0);
         bdr.CornerRadius = new CornerRadius (0);
     }
 
     private void Style4Change()
     {
-        var _da = Style4 (30);
-        HeightSizeChange (_da);
+        sb?.Remove ();
+        Orientation = Orientation.Horizontal;
+        var size = GetDockSize ();
+        bdr.Width = size.width;
+        bdr.Height = size.height;
+        HeightSizeChange (Style4 (30));
         bdr.Margin = new Thickness (0, 30, 0, 0);
         bdr.CornerRadius = new CornerRadius (0);
-    }
-    private void WidthSizeChange(DoubleAnimation da)
-    {
-        this.BeginAnimation (JamesContent.WidthProperty, da);
     }
     private void HeightSizeChange(DoubleAnimation da)
     {
         BounceEase bounceEase = new BounceEase ();
         bounceEase.EasingMode = EasingMode.EaseIn;
         da.EasingFunction = bounceEase;
+        sb = new Storyboard ();
+        sb.Children.Add (da);
+        Storyboard.SetTarget (sb, bdr);
+        Storyboard.SetTargetProperty (sb, new PropertyPath ("Height"));
+        Storyboard.SetTargetName (sb, "bdr");
 
-        bdr.BeginAnimation (Border.HeightProperty, da);        
-    }
-    private DoubleAnimation Style1(double from, double to)
-    {
-        DoubleAnimation sizeAnimation = new (from, to, new Duration (TimeSpan.FromSeconds (1)));
-        sizeAnimation.AutoReverse = false;
-        return sizeAnimation;
+        sb.Begin ();
     }
     private DoubleAnimation Style3(double to)
     {
