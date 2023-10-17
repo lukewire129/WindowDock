@@ -1,18 +1,13 @@
 ﻿using System;
-using WindowDock.Properties;
 
-namespace WindowDock
+namespace WindowDock;
+
+public class Starter
 {
-    public class Starter
+    [STAThread]
+    private static void Main(string[] args)
     {
-        [STAThread]
-        private static void Main(string[] args)
-        {
-            _ = new App ()
-                    .AddInversionModule<ViewModules> ()
-                    .AddInversionModule<DirectModules> ()
-                    .AddWireDataContext<WireDataContext> ()
-                    .Run ();
-        }
+        _ = new App ()
+                .Run ();
     }
 }
