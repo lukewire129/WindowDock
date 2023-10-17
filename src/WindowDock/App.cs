@@ -29,8 +29,6 @@ public partial class App : JamesApplication
         containerRegistry.RegisterSingleton<IConService> ();
         containerRegistry.RegisterDialogWindow<CustomDialogWindow> ();
         containerRegistry.RegisterDialog<OptionContent, OptionContentViewModel> ();
-
-        //containerRegistry.RegisterSingleton<IViewable, OptionContent> ("OptionContent");
     }
 
     protected override void RegisterWireDataContexts(ViewModelLocatorCollection items)
