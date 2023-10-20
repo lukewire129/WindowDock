@@ -19,12 +19,21 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="5">
                         <james:JamesStack VerticalAlignment="Top" ChildSpacing="20">
-                            <TextBlock
-                                FontFamily="나눔고딕"
-                                FontSize="24"
-                                FontWeight="Bold"
-                                Foreground="White"
-                                Text="환경설정" />
+                            <Grid>
+                                <TextBlock
+                                    HorizontalAlignment="Left"
+                                    FontFamily="나눔고딕"
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="환경설정" />
+                                <james:CloseButton
+                                    Width="30"
+                                    Height="30"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding CloseDialogCommand}"
+                                    CommandParameter="true" />
+                            </Grid>
                             <james:JamesGrid Columns="*" Rows="auto,*">
                                 <james:JamesStack ChildSpacing="20">
                                     <TextBlock

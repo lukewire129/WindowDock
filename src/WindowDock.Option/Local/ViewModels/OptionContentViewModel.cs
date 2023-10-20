@@ -40,9 +40,9 @@ namespace WindowDock.Option.Local.ViewModels
         {
             this._eventHub.Publish<StyleChangedPubsub, StyleEnum> (styleModel.type);
         }
-
         #region Dialog 사용안함
         public event Action<IDialogResult> RequestClose;
+        [RelayCommand]
         protected virtual void CloseDialog(string parameter)
         {
             ButtonResult result = ButtonResult.None;
