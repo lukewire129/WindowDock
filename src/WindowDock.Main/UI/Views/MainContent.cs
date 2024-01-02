@@ -2,13 +2,9 @@
 using Jamesnet.Wpf.Global.Event;
 using Lombok.NET;
 using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Media3D;
 using WindowDock.Core.Enums;
 using WindowDock.Core.Event;
 using WindowDock.Main.Local.ViewModels;
