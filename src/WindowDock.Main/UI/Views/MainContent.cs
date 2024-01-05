@@ -8,6 +8,7 @@ using System.Windows.Media.Animation;
 using WindowDock.Core.Enums;
 using WindowDock.Core.Event;
 using WindowDock.Main.Local.ViewModels;
+using WindowDock.Main.UI.Units;
 
 namespace WindowDock.Main.UI.Views;
 
@@ -30,10 +31,12 @@ public partial class MainContent : JamesContent
     private readonly IEventHub _eventHub;
 
     Border bdr;
+    QuickList list;
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate ();
         bdr = GetTemplateChild ("PART_BDR") as Border;
+        list = GetTemplateChild ("PART_QuickItem") as QuickList;
         this._eventHub.Subscribe<StyleChangedPubsub, StyleEnum> (e =>
         {
             if (e == StyleEnum.Style1)
@@ -54,15 +57,15 @@ public partial class MainContent : JamesContent
             }
             else if (e == StyleEnum.Style5)
             {
-
+                Style5Change ();
             }
         });
     }
     
-    private (double width, double height) GetDockSize()
+    private (double width, double height) GetDockSize(double _iconSize = 65.0)
     {
         var itemsCount = ((MainContentViewModel)this.DataContext).QuickFiles.Count;
-        double iconSize = 65.0;
+        double iconSize = _iconSize;
 
         if(Orientation == Orientation.Vertical)
         {
@@ -80,6 +83,7 @@ public partial class MainContent : JamesContent
     Storyboard sb;
     private void Style1Change()
     {
+        list.IsStyleChange (false);
         sb?.Remove ();
         Orientation = Orientation.Horizontal;
         var size = GetDockSize ();
@@ -91,6 +95,7 @@ public partial class MainContent : JamesContent
 
     private void Style2Change()
     {
+        list.IsStyleChange (false);
         sb?.Remove ();
         Orientation = Orientation.Vertical;
         var size = GetDockSize ();
@@ -104,6 +109,7 @@ public partial class MainContent : JamesContent
 
     private void Style3Change()
     {
+        list.IsStyleChange (false);
         sb?.Remove ();
         Orientation = Orientation.Horizontal;
         var size = GetDockSize ();
@@ -116,6 +122,7 @@ public partial class MainContent : JamesContent
 
     private void Style4Change()
     {
+        list.IsStyleChange (false);
         sb?.Remove ();
         Orientation = Orientation.Horizontal;
         var size = GetDockSize ();
@@ -125,6 +132,20 @@ public partial class MainContent : JamesContent
         bdr.Margin = new Thickness (0, 30, 0, 0);
         bdr.CornerRadius = new CornerRadius (0);
     }
+
+    private void Style5Change()
+    {
+        sb?.Remove ();
+        Orientation = Orientation.Horizontal;
+        var size = GetDockSize (45.0);
+        bdr.Width = size.width;
+        bdr.Height = Double.NaN;
+        bdr.Margin = new Thickness (0, 0, 0, 0);
+        bdr.CornerRadius = new CornerRadius (7);
+
+        list.IsStyleChange (true);
+    }
+
     private void HeightSizeChange(DoubleAnimation da)
     {
         BounceEase bounceEase = new BounceEase ();

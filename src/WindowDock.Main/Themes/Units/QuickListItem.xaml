@@ -6,7 +6,7 @@
 
     <ControlTemplate x:Key="DotsTemplate" TargetType="{x:Type units:QuickListItem}">
         <Border
-            Margin="10,10"
+            Margin="{Binding Path=ChildrenSpacing, RelativeSource={RelativeSource AncestorType={x:Type units:QuickList}}}"
             Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}">
@@ -17,7 +17,7 @@
     </ControlTemplate>
     <ControlTemplate x:Key="IconTemplate" TargetType="{x:Type units:QuickListItem}">
         <Border
-            Margin="10,10"
+            Margin="{Binding Path=ChildrenSpacing, RelativeSource={RelativeSource AncestorType={x:Type units:QuickList}}}"
             Background="{TemplateBinding Background}"
             BorderBrush="{TemplateBinding BorderBrush}"
             BorderThickness="{TemplateBinding BorderThickness}">
