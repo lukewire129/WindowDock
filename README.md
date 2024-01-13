@@ -10,17 +10,9 @@ Windows 바로가기 프로그램에 오신 것을 환영합니다. 이 프로�
 - 경량 및 효율적: 시스템 자원에 미치는 영향을 최소화하면서 성능 최적화.
 
 ## Style Type
-### Style1
- - Horizontal Style
-
-### Style2
- - Vertical Style
-
-### Style3
- - Horizontal Style & Animation
-
-### Style4
- - Horizontal Style & Animation Loop
-
+**Style1** : Horizontal Style<br/>
+**Style2** : Vertical Style<br/>
+**Style3** : Horizontal Style & Animation<br/>
+**Style4** : Horizontal Style & Animation Loop<br/>
 
 https://github.com/lukewire129/WindowDock/assets/54387261/8f993fe3-3acf-4edb-b447-1aafffaa5e25
