@@ -27,7 +27,6 @@ namespace WindowDock.Main.UI.Units
         public static readonly DependencyProperty ChildrenSpacingProperty =
             DependencyProperty.Register ("ChildrenSpacing", typeof (Thickness), typeof (QuickList), new PropertyMetadata (new Thickness (10, 10, 10 ,10)));
 
-
         public void IsStyleChange(bool OnOff = false)
         {
             if(OnOff)
@@ -37,6 +36,5 @@ namespace WindowDock.Main.UI.Units
             }
             this.ChildrenSpacing = new Thickness (10, 10, 10, 10);
         }
-
     }
 }
