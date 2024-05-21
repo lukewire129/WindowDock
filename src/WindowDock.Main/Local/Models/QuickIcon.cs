@@ -7,10 +7,14 @@ namespace WindowDock.Main.Local.Models
         Program,
         Option,
     }
-    public class QuickIcon
+    public class QuickIcon : QuickBaseIcon
+    {
+        public ImageSource FileImage { get; set; }
+    }
+
+    public class QuickBaseIcon
     {
         public LinkType Type { get; set; } = LinkType.Option;
-        public ImageSource FileImage { get; set; }
         public string FullPath { get; set; }
         public string ToolTipName { get; set; }
     }

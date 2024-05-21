@@ -8,6 +8,12 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using WindowDock.Main.Local.Services;
 using WindowDock.Main.Local.Models;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Drawing;
+using WindowDock.Core.Utils;
+using WindowDock.Main.Local.Extentions;
 
 namespace WindowDock.Main.Local.ViewModels
 {
@@ -21,7 +27,18 @@ namespace WindowDock.Main.Local.ViewModels
 
         public void OnLoaded(IViewable view)
         {
-            this.QuickFiles = new ObservableCollection<QuickIcon> (_conService.GetFiles ());
+            if (File.Exists ("data.txt") == false)
+            {
+                this.QuickFiles = new ObservableCollection<QuickIcon> (_conService.GetFiles ());
+                return;
+            }
+
+            using (StreamReader sw = File.OpenText ("data.txt"))
+            {
+                string data = sw.ReadToEnd ();
+                var objs = Base64String.Get<QuickBaseIcon> (data);
+                this.QuickFiles = new ObservableCollection<QuickIcon> (objs.Change ());
+            }
         }
 
         [RelayCommand]
@@ -46,6 +63,21 @@ namespace WindowDock.Main.Local.ViewModels
                 return;
             }
             Process.Start (quickFile.FullPath);
+        }
+
+        [RelayCommand]
+        private void DropFile(QuickIcon dropFile)
+        {
+            dropFile.FileImage = dropFile.FullPath.Convert();
+            this.QuickFiles.Insert (this.QuickFiles.Count() -1 ,dropFile);
+            Save (this.QuickFiles.ToList ().Change ());
+        }
+
+        private void Save(List<QuickBaseIcon> objs)
+        {
+            string base64 = Base64String.Get (objs);
+            using (StreamWriter sw = File.CreateText ("data.txt"))
+                sw.Write (base64);
         }
     }
 }

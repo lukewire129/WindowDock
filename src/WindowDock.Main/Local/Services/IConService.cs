@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
+using WindowDock.Main.Local.Extentions;
 using WindowDock.Main.Local.Models;
 
 namespace WindowDock.Main.Local.Services
@@ -28,7 +29,7 @@ namespace WindowDock.Main.Local.Services
                 quickFiles.Add (new QuickIcon ()
                 {
                     Type = LinkType.Program,
-                    FileImage = Convert ((Bitmap)Icon.ExtractAssociatedIcon (file).ToBitmap ()),
+                    FileImage = file.Convert(),
                     FullPath = file,
                     ToolTipName = Path.GetFileNameWithoutExtension (file)
                 });
@@ -42,6 +43,7 @@ namespace WindowDock.Main.Local.Services
 
             return quickFiles;
         }
+
         private List<string> GetRootPath()
         {
             List<string> files = Directory.GetFiles (this._directory, "*.lnk").ToList ();
@@ -61,18 +63,6 @@ namespace WindowDock.Main.Local.Services
             }
 
             return tempFullPath;
-        }
-
-        private BitmapImage Convert(Bitmap src)
-        {
-            MemoryStream ms = new MemoryStream ();
-            ((System.Drawing.Bitmap)src).Save (ms, System.Drawing.Imaging.ImageFormat.Png);
-            BitmapImage image = new BitmapImage ();
-            image.BeginInit ();
-            ms.Seek (0, SeekOrigin.Begin);
-            image.StreamSource = ms;
-            image.EndInit ();
-            return image;
         }
     }
 }
